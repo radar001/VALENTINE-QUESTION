@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Amontiny Signature', sans-serif;
+            background-color: pink;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #question {
+            font-size: 3.7em;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            position: relative;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #yes {
+            background-color: green;
+            color: white;
+            border-radius: 10px;
+        }
+        #no {
+            background-color: red;
+            color: white;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+        #celebration {
+            display: none;
+            font-size: 3em;
+            color: white;
+            text-align: center;
+        }
+        #cat-gif {
+            display: none;
+            width: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="question">Will you be my Valentine? ❤️</div>
+    <div class="buttons">
+        <button id="yes" onclick="celebrate()">Yes</button>
+        <button id="no" onclick="areYouSure()">No</button>
+    </div>
+    
+    <div id="celebration">
+        Yayyy! ❤️
+        <br>
+        <img id="cat-gif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cute cat">
+    </div>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let question = document.getElementById("question");
+        let celebration = document.getElementById("celebration");
+        let catGif = document.getElementById("cat-gif");
+        let yesSize = 20; // Initial button size in px
+
+        function areYouSure() {
+            if (noButton.innerText === "No") {
+                noButton.innerText = "Are you sure?";
+            } else {
+                yesSize += 20;
+                yesButton.style.fontSize = yesSize + "px";
+                yesButton.style.padding = (yesSize / 4) + "px " + (yesSize / 2) + "px";
+                
+                if (yesSize >= 300) { // Once "Yes" is big enough, force the answer
+                    question.style.display = "none";
+                    yesButton.style.display = "none";
+                    noButton.style.display = "none";
+                    celebration.style.display = "block";
+                    catGif.style.display = "block";
+                }
+            }
+        }
+
+        function celebrate() {
+            question.style.display = "none";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+            celebration.style.display = "block";
+            catGif.style.display = "block";
+        }
+    </script>
+</body>
+</html>
